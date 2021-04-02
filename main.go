@@ -15,7 +15,6 @@ import (
 	"reflect"
 	"runtime"
 	"strings"
-	"time"
 )
 
 var version = "development"
@@ -132,6 +131,14 @@ func isParentAlive() bool {
 	return os.Getppid() != 1 // assume ppid 1 means process was adopted by init
 }
 
+func boolToString(b bool) string {
+	if b {
+		return "true"
+	} else {
+		return "false"
+	}
+}
+
 func main() {
 	if *showVersion == true {
 		printVersion()
@@ -150,7 +157,7 @@ func main() {
 
 	if socket != "" {
 		log.Printf("Socket is "+socket)
-		log.Printf("Parent is alive? "+isParentAlive())
+		log.Printf("Parent is alive? "+boolToString(isParentAlive()))
 //		go func() {
 //			for {
 //				if !isParentAlive() {
