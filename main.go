@@ -149,16 +149,18 @@ func main() {
 	}
 
 	if socket != "" {
-		go func() {
-			for {
-				if !isParentAlive() {
-					log.Printf("Kong exited; shutting down...")
-					os.Exit(0)
-				}
-
-				time.Sleep(1 * time.Second)
-			}
-		}()
+		log.Printf("Socket is "+socket)
+		log.Printf("Parent is alive? "+isParentAlive())
+//		go func() {
+//			for {
+//				if !isParentAlive() {
+//					log.Printf("Kong exited; shutting down...")
+//					os.Exit(0)
+//				}
+//
+//				time.Sleep(1 * time.Second)
+//			}
+//		}()
 
 		startServer()
 	}
